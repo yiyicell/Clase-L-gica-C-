@@ -3,12 +3,13 @@ using namespace std;
 int
 main ()
 {
-  int opmenu, opproducto, opi, opcompra, dev_menu;
-  int uni1 = 10, uni2 = 15, uni3 = 18, uni4 = 25;
-  int unidades_totales, total_productos, productos_disp;
-  float credito, total, precio_total;
-  float precio_uni1 = 3700, precio_uni2 = 2500, precio_uni3 =3500, precio_uni4 = 6500;
+  int uni1 = 25, uni2 = 25, uni3 = 25, uni4 = 25;
 
+  int opmenu, opproducto, opi, opcompra, dev_menu;
+  int unidades_totales, total_productos, productos_disp, aux;
+  float credito, total, precio_total;
+  float precio_uni1 = 3700, precio_uni2 = 2500, precio_uni3 =
+	3500, precio_uni4 = 6500, donacion;
   total_productos = uni1 + uni2 + uni3 + uni4;
   productos_disp = total_productos - unidades_totales;
 
@@ -170,6 +171,7 @@ main ()
 					  productos_disp = total_productos - unidades_totales - 1;
 					  unidades_totales++;
 					  precio_total += precio_uni2;
+					  donacion += precio_uni2*0.06;
 					  cout << "Gracias por su compra. ";
 					  total = total - precio_uni2;
 					  cout << "Dinero disponible " << total << " pesos";
@@ -214,6 +216,7 @@ main ()
 					  productos_disp = total_productos - unidades_totales - 1;
 					  unidades_totales++;
 					  precio_total += precio_uni4;
+					  donacion += precio_uni4*0.06;
 					  cout << "Gracias por su compra. ";
 					  total = total - precio_uni4;
 					  cout << "Dinero disponible " << total << " pesos";
@@ -244,11 +247,13 @@ main ()
 			{
 			  //Despliegue del menu para "desarrollador"
 			  cout <<
-				"\n\n1-Productos adquiridos\n2-Total gastado\n3-Disponibilidad de la maquina\n(Digite 0 para devolverse al menu anterior)\n\n";
+				"\n\n1-Productos adquiridos\n2-Total gastado\n3-Disponibilidad de la maquina\n4-Producto mas comprado\n5-Valor de la donacion total al FOPRE por las compras realizadas\n(Digite 0 para devolverse al menu anterior)\n\n";
 			  cin >> dev_menu;
+			  //asignacion de valores al vector
+			  int mayor[4] = { uni1, uni2, uni3, uni4 };
 			  switch (dev_menu)
 				{
-				    //Datos adicionales sobre la maquina
+				  //Datos adicionales sobre la maquina
 				case 1:
 				  cout << "\nProductos adquiridos: " << unidades_totales;
 				  break;
@@ -256,15 +261,43 @@ main ()
 				  cout << "\nTotal gastado: " << precio_total;
 				  break;
 				case 3:
-				  cout << "\nDisponibilidad de la maquina: "<<productos_disp * 100 / total_productos<< "%";
+				  cout << "\nDisponibilidad de la maquina: " << productos_disp
+					* 100 / total_productos << "%";
+				  break;
+				case 4:
+				  cout << "\nProducto mas comprado: ";
+				  //Algoritmo de ordenamiento
+                    for(int i=0;i<4;i++){
+                        for (int j=0;j<4;j++){
+                            if(mayor[i]<mayor[j]){
+                                aux=mayor[i];
+                                mayor[i]=mayor[j];
+                                mayor[j]=aux;
+                            }
+                        }
+                    }//Muestra producto mas vendido
+                    cout<<25-mayor[0];    
+                    if ((uni1>=uni2)and(uni1>=uni3)and(uni1>=uni4))    
+                    cout<<" Chocolatina Hershey's";        
+                    else if ((uni2>=uni1)and(uni2>=uni3)and(uni2>=uni4))    
+                    cout<<" Coca-cola de cafe";        
+                    else if ((uni3>=uni2)and(uni3>=uni1)and(uni3>=uni4))    
+                    cout<<" Cheetos Naturales";        
+                    else if ((uni4>=uni2)and(uni4>=uni1)and(uni4>=uni3))    
+                    cout<<" Doritos Dinamita";
+				  break;
+				case 5:
+				//Porcentaje de donaciones
+				  cout <<
+					"\nValor de la donacion total al FOPRE por las compras realizadas: "<<donacion<<endl;
 				  break;
 				default:
-				  dev_menu = 4;
+				  dev_menu = 10;
 				  break;
 
 				}
 			}
-		  while (dev_menu != 4);
+		  while (dev_menu != 10);
 		  break;
 		case 5:
 		  opmenu = 5;
