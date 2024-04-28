@@ -252,7 +252,7 @@ main ()
 			{
 			  //Despliegue del menu para "desarrollador"
 			  cout <<
-				"\n\n1-Productos adquiridos\n2-Total gastado\n3-Disponibilidad de la maquina\n4-Producto mas comprado\n5-Valor de la donacion total al FOPRE por las compras realizadas\n6-Valor de la donaciC3n al FOPRE por tipo de producto\n7-Unidades compradas de productos FOPRE y por tipo de producto\n(Digite 0 para devolverse al menu anterior)\n\n";
+				"\n\n1-Productos adquiridos\n2-Total gastado\n3-Disponibilidad de la maquina\n4-Producto mas comprado\n5-Valor de la donacion total al FOPRE por las compras realizadas\n6-Valor de la donacion al FOPRE por tipo de producto\n7-Unidades compradas de productos FOPRE y por tipo de producto\n(Digite 0 para devolverse al menu anterior)\n\n";
 			  cin >> dev_menu;
 			  //asignacion de valores al vector
 			  int mayor[4] = { uni1, uni2, uni3, uni4 };
@@ -285,17 +285,17 @@ main ()
 						}
 					}			//Muestra producto mas vendido
 				  cout << 25 - mayor[0];
-				  if ((uni1 >= uni2) and (uni1 >= uni3) and (uni1 >= uni4))
-					cout << " Chocolatina Hershey's";
-				  else if ((uni2 >= uni1) and (uni2 >= uni3)
-						   and (uni2 >= uni4))
+				  if ((uni1 <= uni2) and (uni1 <= uni3) and (uni1 <= uni4))
 					cout << " Coca-cola de cafe";
-				  else if ((uni3 >= uni2) and (uni3 >= uni1)
-						   and (uni3 >= uni4))
+				  else if ((uni2 <= uni1) and (uni2 <= uni3)
+						   and (uni2 <= uni4))
 					cout << " Cheetos Naturales";
-				  else if ((uni4 >= uni2) and (uni4 >= uni1)
-						   and (uni4 >= uni3))
+				  else if ((uni3 <= uni2) and (uni3 <= uni1)
+						   and (uni3 <= uni4))
 					cout << " Doritos Dinamita";
+				  else if ((uni4 <= uni2) and (uni4 <= uni1)
+						   and (uni4 <= uni3))
+					cout << " Chocolatina Hershey's";
 				  break;
 				case 5:
 				  //Porcentaje de donaciones
