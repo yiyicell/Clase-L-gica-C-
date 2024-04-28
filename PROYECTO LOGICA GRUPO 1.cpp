@@ -1,10 +1,15 @@
 #include <iostream>
 using namespace std;
+struct FOPRE
+{
+  long int valorFOPRE;
+};
 int
 main ()
 {
+  FOPRE donchoco;
+  FOPRE donchito;
   int uni1 = 25, uni2 = 25, uni3 = 25, uni4 = 25;
-
   int opmenu, opproducto, opi, opcompra, dev_menu;
   int unidades_totales, total_productos, productos_disp, aux;
   float credito, total, precio_total;
@@ -105,7 +110,7 @@ main ()
 					  opproducto = 5;
 					  break;
 					}
-				case 5:
+				default:
 				  //opcion 5. salida al menu principal
 				  opproducto = 5;
 				  break;
@@ -115,7 +120,7 @@ main ()
 		  break;
 		case 2:
 		  //Ingreso de saldo 
-		  cout << "Cuanto dinero desea ingresar?" << endl;
+		  cout << "Cuanto dinero desea ingresar? (Digite 0 si desea regresar)" << endl;
 		  cin >> credito;
 		  total = credito + total;
 		  cout << total << endl;
@@ -136,8 +141,7 @@ main ()
 		  while (opi == 1000);
 		  do
 			{					//resta del saldo y resta de la cantidad
-
-			  cout << "\nQue producto desea comprar? Dinero:" << total <<
+			  cout << "\nQue producto desea comprar? Dinero:" << total <<"\n(Digite 0 si desea regresar)\n"<<
 				endl;
 			  cin >> opcompra;
 			  switch (opcompra)
@@ -171,7 +175,8 @@ main ()
 					  productos_disp = total_productos - unidades_totales - 1;
 					  unidades_totales++;
 					  precio_total += precio_uni2;
-					  donacion += precio_uni2*0.06;
+					  donchito.valorFOPRE += precio_uni2 * 0.06;
+					  donacion += precio_uni2 * 0.06;
 					  cout << "Gracias por su compra. ";
 					  total = total - precio_uni2;
 					  cout << "Dinero disponible " << total << " pesos";
@@ -216,7 +221,8 @@ main ()
 					  productos_disp = total_productos - unidades_totales - 1;
 					  unidades_totales++;
 					  precio_total += precio_uni4;
-					  donacion += precio_uni4*0.06;
+					  donacion += precio_uni4 * 0.06;
+					  donchoco.valorFOPRE += precio_uni4 * 0.06;
 					  cout << "Gracias por su compra. ";
 					  total = total - precio_uni4;
 					  cout << "Dinero disponible " << total << " pesos";
@@ -236,7 +242,6 @@ main ()
 				  opcompra = 5;
 				  break;
 				}
-
 			}
 		  while (opcompra != 5);
 		  break;
@@ -247,7 +252,7 @@ main ()
 			{
 			  //Despliegue del menu para "desarrollador"
 			  cout <<
-				"\n\n1-Productos adquiridos\n2-Total gastado\n3-Disponibilidad de la maquina\n4-Producto mas comprado\n5-Valor de la donacion total al FOPRE por las compras realizadas\n(Digite 0 para devolverse al menu anterior)\n\n";
+				"\n\n1-Productos adquiridos\n2-Total gastado\n3-Disponibilidad de la maquina\n4-Producto mas comprado\n5-Valor de la donacion total al FOPRE por las compras realizadas\n6-Valor de la donaciC3n al FOPRE por tipo de producto\n7-Unidades compradas de productos FOPRE y por tipo de producto\n(Digite 0 para devolverse al menu anterior)\n\n";
 			  cin >> dev_menu;
 			  //asignacion de valores al vector
 			  int mayor[4] = { uni1, uni2, uni3, uni4 };
@@ -267,34 +272,56 @@ main ()
 				case 4:
 				  cout << "\nProducto mas comprado: ";
 				  //Algoritmo de ordenamiento
-                    for(int i=0;i<4;i++){
-                        for (int j=0;j<4;j++){
-                            if(mayor[i]<mayor[j]){
-                                aux=mayor[i];
-                                mayor[i]=mayor[j];
-                                mayor[j]=aux;
-                            }
-                        }
-                    }//Muestra producto mas vendido
-                    cout<<25-mayor[0];    
-                    if ((uni1>=uni2)and(uni1>=uni3)and(uni1>=uni4))    
-                    cout<<" Chocolatina Hershey's";        
-                    else if ((uni2>=uni1)and(uni2>=uni3)and(uni2>=uni4))    
-                    cout<<" Coca-cola de cafe";        
-                    else if ((uni3>=uni2)and(uni3>=uni1)and(uni3>=uni4))    
-                    cout<<" Cheetos Naturales";        
-                    else if ((uni4>=uni2)and(uni4>=uni1)and(uni4>=uni3))    
-                    cout<<" Doritos Dinamita";
+				  for (int i = 0; i < 4; i++)
+					{
+					  for (int j = 0; j < 4; j++)
+						{
+						  if (mayor[i] < mayor[j])
+							{
+							  aux = mayor[i];
+							  mayor[i] = mayor[j];
+							  mayor[j] = aux;
+							}
+						}
+					}			//Muestra producto mas vendido
+				  cout << 25 - mayor[0];
+				  if ((uni1 >= uni2) and (uni1 >= uni3) and (uni1 >= uni4))
+					cout << " Chocolatina Hershey's";
+				  else if ((uni2 >= uni1) and (uni2 >= uni3)
+						   and (uni2 >= uni4))
+					cout << " Coca-cola de cafe";
+				  else if ((uni3 >= uni2) and (uni3 >= uni1)
+						   and (uni3 >= uni4))
+					cout << " Cheetos Naturales";
+				  else if ((uni4 >= uni2) and (uni4 >= uni1)
+						   and (uni4 >= uni3))
+					cout << " Doritos Dinamita";
 				  break;
 				case 5:
-				//Porcentaje de donaciones
+				  //Porcentaje de donaciones
 				  cout <<
-					"\nValor de la donacion total al FOPRE por las compras realizadas: "<<donacion<<endl;
+					"\nValor de la donacion total al FOPRE por las compras realizadas: "
+					<< donacion <<" pesos"<< endl;
+				  break;
+
+				case 6:
+				  //Conocer el valor de la donacion al FOPRE por tipo de producto.
+				  cout <<
+					"Conocer el valor de la donacion al FOPRE por tipo de producto.\n";
+
+				  cout << "\nChocolatina Hershey's: " << donchoco.valorFOPRE
+					<< " pesos" << endl;
+				  cout << "Cheetos naturales: " << donchito.
+					valorFOPRE << " pesos" << endl;
+				  break;
+				case 7:
+				//Imprimir unidades compradas de productos FOPRE y tipo de producto.
+				  cout << "\nCheetos naturales: " << 25 - uni2;
+				  cout << "\nChocolatina Hershey's: " << 25 - uni4;
 				  break;
 				default:
 				  dev_menu = 10;
 				  break;
-
 				}
 			}
 		  while (dev_menu != 10);
@@ -306,3 +333,4 @@ main ()
 	}
   while (opmenu != 5);
 }
+
