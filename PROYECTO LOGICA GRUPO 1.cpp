@@ -5,24 +5,37 @@ struct FOPRE
   long int DONACIONFOPRE;
   float donacion;
   int uni;
+  float precio;
+};
+struct menu
+{
+  int op;
 };
 int
 main ()
 {
   FOPRE coca;
-  FOPRE chito;
-  FOPRE dori;
-  FOPRE choco;
-  
   coca.uni = 25;
-  chito.uni = 25; 
+  coca.precio = 3700;
+  FOPRE chito;
+  chito.uni = 25;
+  chito.precio = 2500;
+  FOPRE dori;
   dori.uni = 25;
+  dori.precio = 3500;
+  FOPRE choco;
   choco.uni = 25;
-  int opmenu, opproducto, opi, opcompra, dev_menu;
+  choco.precio = 6500;
+  menu menu_prin;
+  menu_prin.op;
+  menu menu_info;
+  menu_info.op;
+  menu menu_compra;
+  menu_compra.op;
+  menu dev_menu;
+  dev_menu.op;
   int unidades_totales, total_productos, productos_disp, aux;
   float credito, total, precio_total;
-  float precio_uni1 = 3700, precio_uni2 = 2500, precio_uni3 =
-	3500, precio_uni4 = 6500;
   total_productos = coca.uni + chito.uni + choco.uni + choco.uni;
   productos_disp = total_productos - unidades_totales;
 
@@ -32,103 +45,103 @@ main ()
 	  cout <<
 		"\n----------------------Productos----------------------" << endl;
 	  cout <<
-		"1) Coca-cola de cafe  3) Doritos Dinamita\n         " << precio_uni1
-		<< "                  " << precio_uni2 <<
+		"1) Coca-cola de cafe  3) Doritos Dinamita\n         " << coca.precio
+		<< "                  " << dori.precio <<
 		"\n\n2) Cheetos Naturales  4) Chocolatina Hershey's\n         " <<
-		precio_uni2 << "                  " << precio_uni4 << "\n\n";
+		chito.precio << "                  " << choco.precio << "\n\n";
 	  cout << "\nDinero: " << total << " pesos" << endl;
 	  cout <<
 		"\n1. Visualizar la informacion de los productos.\n2. Agregar dinero a la maquina.\n3. Comprar un producto.\n4. Opciones de desarrollador. \n5. Salir"
 		<< endl << endl;
-	  cin >> opmenu;
-	  switch (opmenu)			//visualizacion de la informacion de los productos
+	  cin >> menu_prin.op;
+	  switch (menu_prin.op)		//visualizacion de la informacion de los productos
 		{
 		case 1:
-		  cout << "Que producto desea consultar?  ";
+		  cout << "\nQue producto desea consultar?  ";
 		  do
 			{
 			  cout <<
-				"\n\n1-Coca cola de cafe\n2-Cheetos Naturales\n3-Doritos Dinamita\n4-Chocolatina Hershey's\n5-Salir\n";
-			  cin >> opproducto;
+				"\n\n1-Coca cola de cafe\n2-Cheetos Naturales\n3-Doritos Dinamita\n4-Chocolatina Hershey's\n5-Salir\n\n";
+			  cin >> menu_info.op;
 			  cout << endl;
-			  switch (opproducto)
+			  switch (menu_info.op)
 				{
 				case 1:
 				  //opcion 1. informacion coca cola
 				  cout << "---------INFORMACION---------\n";
-				  cout << "Coca-cola de cafe\nPrecio:" << precio_uni1 <<
+				  cout << "Coca-cola de cafe\nPrecio:" << coca.precio <<
 					"\nUnidades disponibles: " << coca.uni << endl;
-				  cout << "Desea continuar? (1 para si/0 para no)";
-				  cin >> opi;
-				  if (opi == 1)
+				  cout << "\nDesea continuar? (1 para si/0 para no)";
+				  cin >> menu_info.op;
+				  if (menu_info.op == 1)
 					{
 					  break;
 					}
 				  else
 					{
-					  opproducto = 5;
+					  menu_info.op = 5;
 					  break;
 					}
 				case 2:
 				  //opcion 2. informacion cheetos
 				  cout << "---------INFORMACION---------\n";
-				  cout << "Cheetos Naturales\nPrecio:" << precio_uni2 <<
+				  cout << "Cheetos Naturales\nPrecio:" << chito.precio <<
 					"\nUnidades disponibles: " << chito.uni << endl;
-				  cout << "Desea continuar? (1 para si/0 para no)";
-				  cin >> opi;
-				  if (opi == 1)
+				  cout << "\nDesea continuar? (1 para si/0 para no)";
+				  cin >> menu_info.op;
+				  if (menu_info.op == 1)
 					{
 					  break;
 					}
 				  else
 					{
-					  opproducto = 5;
+					  menu_info.op = 5;
 					  break;
 					}
 				case 3:
 				  //opcion 3. informacion Doritos Dinamita
 				  cout << "---------INFORMACION---------\n";
-				  cout << "Doritos Dinamita\nPrecio:" << precio_uni3 <<
+				  cout << "Doritos Dinamita\nPrecio:" << dori.precio <<
 					"\nUnidades disponibles: " << dori.uni << endl;
-				  cout << "Desea continuar? (1 para si/0 para no)";
-				  cin >> opi;
-				  if (opi == 1)
+				  cout << "\nDesea continuar? (1 para si/0 para no)";
+				  cin >> menu_info.op;
+				  if (menu_info.op == 1)
 					{
 					  break;
 					}
 				  else
 					{
-					  opproducto = 5;
+					  menu_info.op = 5;
 					  break;
 					}
 				case 4:
 				  //opcion 4. informacion Hershey's
 				  cout << "---------INFORMACION---------\n";
-				  cout << "Chocolatina Hershey's" << precio_uni4 <<
+				  cout << "Chocolatina Hershey's\nPrecio:" << choco.precio <<
 					"\nUnidades disponibles: " << choco.uni << endl;
-				  cout << "Desea continuar? (1 para si/0 para no)";
-				  cin >> opi;
-				  if (opi == 1)
+				  cout << "\nDesea continuar? (1 para si/0 para no)";
+				  cin >> menu_info.op;
+				  if (menu_info.op == 1)
 					{
 					  break;
 					}
 				  else
 					{
-					  opproducto = 5;
+					  menu_info.op = 5;
 					  break;
 					}
 				default:
 				  //opcion 5. salida al menu principal
-				  opproducto = 5;
+				  menu_info.op = 5;
 				  break;
 				}
 			}
-		  while (opproducto != 5);
+		  while (menu_info.op != 5);
 		  break;
 		case 2:
 		  //Ingreso de saldo 
-		  cout << "Cuanto dinero desea ingresar? (Digite 0 si desea regresar)"
-			<< endl;
+		  cout <<
+			"\nCuanto dinero desea ingresar? (Digite 0 si desea regresar)\n\n";
 		  cin >> credito;
 		  total = credito + total;
 		  cout << total << endl;
@@ -141,32 +154,32 @@ main ()
 				"\n----------------------Productos----------------------" <<
 				endl;
 			  cout << "1) Coca-cola de cafe  3) Doritos Dinamita\n         "
-				<< precio_uni1 << "                  " << precio_uni2 <<
+				<< coca.precio << "                  " << dori.precio <<
 				"\n\n2) Cheetos Naturales  4) Chocolatina Hershey's\n         "
-				<< precio_uni2 << "                  " << precio_uni4 <<
+				<< chito.precio << "                  " << choco.precio <<
 				"\n\n";
 			}
-		  while (opi == 1000);
+		  while (menu_info.op == 1000);
 		  do
 			{					//resta del saldo y resta de la cantidad
 			  cout << "\nQue producto desea comprar? Dinero:" << total <<
 				"\n(Digite 0 si desea regresar)\n" << endl;
-			  cin >> opcompra;
-			  switch (opcompra)
+			  cin >> menu_compra.op;
+			  switch (menu_compra.op)
 				{
 				case 1:
-				  if ((total >= precio_uni1) && (coca.uni > 0))
+				  if ((total >= coca.precio) && (coca.uni > 0))
 					{
 					  coca.uni--;
 					  productos_disp = total_productos - unidades_totales - 1;
 					  unidades_totales++;
-					  precio_total += precio_uni1;
-					  cout << "Gracias por su compra. ";
-					  total = total - precio_uni1;
-					  cout << "Dinero disponible " << total << " pesos \n";
+					  precio_total += coca.precio;
+					  cout << "\nGracias por su compra. ";
+					  total = total - coca.precio;
+					  cout << "\nDinero disponible " << total << " pesos \n";
 					  break;
 					}
-				  else if (total < precio_uni1)
+				  else if (total < coca.precio)
 					{
 					  cout << "\nDinero insuficiente!!!\n";
 					  break;
@@ -177,20 +190,20 @@ main ()
 					  break;
 					}
 				case 2:
-				  if ((total >= precio_uni2) && (chito.uni > 0))
+				  if ((total >= chito.precio) && (chito.uni > 0))
 					{
 					  chito.uni--;
 					  productos_disp = total_productos - unidades_totales - 1;
 					  unidades_totales++;
-					  precio_total += precio_uni2;
-					  chito.DONACIONFOPRE += precio_uni2 * 0.06;
-					  chito.donacion += precio_uni2 * 0.06;
-					  cout << "Gracias por su compra. ";
-					  total = total - precio_uni2;
-					  cout << "Dinero disponible " << total << " pesos";
+					  precio_total += chito.precio;
+					  chito.DONACIONFOPRE += chito.precio * 0.06;
+					  chito.donacion += chito.precio * 0.06;
+					  cout << "\nGracias por su compra. ";
+					  total = total - chito.precio;
+					  cout << "\nDinero disponible " << total << " pesos\n\n";
 					  break;
 					}
-				  else if (total < precio_uni1)
+				  else if (total < coca.precio)
 					{
 					  cout << "\nDinero insuficiente!!!\n";
 					  break;
@@ -201,18 +214,18 @@ main ()
 					  break;
 					}
 				case 3:
-				  if ((total >= precio_uni3) && (dori.uni > 0))
+				  if ((total >= dori.precio) && (dori.uni > 0))
 					{
 					  dori.uni--;
 					  productos_disp = total_productos - unidades_totales - 1;
 					  unidades_totales++;
-					  precio_total += precio_uni3;
-					  cout << "Gracias por su compra. ";
-					  total = total - precio_uni3;
-					  cout << "Dinero disponible " << total << " pesos";
+					  precio_total += dori.precio;
+					  cout << "\nGracias por su compra. ";
+					  total = total - dori.precio;
+					  cout << "\nDinero disponible " << total << " pesos\n";
 					  break;
 					}
-				  else if (total < precio_uni3)
+				  else if (total < dori.precio)
 					{
 					  cout << "\nDinero insuficiente!!!\n";
 					  break;
@@ -223,20 +236,20 @@ main ()
 					  break;
 					}
 				case 4:
-				  if ((total >= precio_uni4) && (choco.uni > 0))
+				  if ((total >= choco.precio) && (choco.uni > 0))
 					{
 					  choco.uni--;
 					  productos_disp = total_productos - unidades_totales - 1;
 					  unidades_totales++;
-					  precio_total += precio_uni4;
-					  choco.donacion += precio_uni4 * 0.06;
-					  choco.DONACIONFOPRE += precio_uni4 * 0.06;
-					  cout << "Gracias por su compra. ";
-					  total = total - precio_uni4;
-					  cout << "Dinero disponible " << total << " pesos";
+					  precio_total += choco.precio;
+					  choco.donacion += choco.precio * 0.06;
+					  choco.DONACIONFOPRE += choco.precio * 0.06;
+					  cout << "\nGracias por su compra. ";
+					  total = total - choco.precio;
+					  cout << "\nDinero disponible " << total << " pesos\n";
 					  break;
 					}
-				  else if (total < precio_uni4)
+				  else if (total < choco.precio)
 					{
 					  cout << "\nDinero insuficiente!!!\n";
 					  break;
@@ -247,11 +260,11 @@ main ()
 					  break;
 					}
 				default:
-				  opcompra = 5;
+				  menu_compra.op = 5;
 				  break;
 				}
 			}
-		  while (opcompra != 5);
+		  while (menu_compra.op != 5);
 		  break;
 		case 4:
 		  cout <<
@@ -261,10 +274,10 @@ main ()
 			  //Despliegue del menu para "desarrollador"
 			  cout <<
 				"\n\n1-Productos adquiridos\n2-Total gastado\n3-Disponibilidad de la maquina\n4-Producto mas comprado\n5-Valor de la donacion total al FOPRE por las compras realizadas\n6-Valor de la donacion al FOPRE por tipo de producto\n7-Unidades compradas de productos FOPRE y por tipo de producto\n(Digite 0 para devolverse al menu anterior)\n\n";
-			  cin >> dev_menu;
-			  //asignacion de valores al vector
+			  cin >> dev_menu.op;
+			  //asignacion de valores al vector/matriz :v
 			  int mayor[4] = { coca.uni, chito.uni, dori.uni, choco.uni };
-			  switch (dev_menu)
+			  switch (dev_menu.op)
 				{
 				  //Datos adicionales sobre la maquina
 				case 1:
@@ -292,27 +305,24 @@ main ()
 							}
 						}
 					}			//Muestra producto mas vendido
-				  cout << 25 - mayor[0];
-				  if ((coca.uni <= chito.uni) and (coca.uni <=
-												 dori.uni) and (coca.uni <=
-															choco.uni))
-					cout << " Coca-cola de cafe";
-				  else if ((chito.uni <= coca.uni) and (chito.uni <= dori.uni)
-						   and (chito.uni <= choco.uni))
-					cout << " Cheetos Naturales";
-				  else if ((dori.uni <= chito.uni) and (dori.uni <= coca.uni)
-						   and (dori.uni <= choco.uni))
-					cout << " Doritos Dinamita";
-				  else if ((choco.uni <= chito.uni) and (choco.uni <= coca.uni)
-						   and (choco.uni <= dori.uni))
-					cout << " Chocolatina Hershey's";
+				  if ((coca.uni == 25) and (dori.uni == 25) and (chito.uni ==25)and (choco.uni == 25))
+					cout << 25 -mayor[0] << " Ningun producto ha sido comprado";
+				  else if ((coca.uni == dori.uni and choco.uni and chito.uni) and (dori.uni == choco.uni and coca.uni and chito.uni) and (chito.uni == dori.uni and choco.uni and coca.uni) and (choco.uni == dori.uni and coca.uni and chito.uni))
+					cout << 25 -mayor[0] << " Todos los productos han sido comprados por igual";
+				  else if ((coca.uni <= chito.uni) and (coca.uni <= dori.uni)and (coca.uni <= choco.uni))
+					cout << 25 - mayor[0] << " Coca-cola de cafe";
+				  else if ((chito.uni <= coca.uni) and (chito.uni <= dori.uni)and (chito.uni <= choco.uni))
+					cout << 25 - mayor[0] << " Cheetos Naturales";
+				  else if ((dori.uni <= chito.uni) and (dori.uni <= coca.uni)and (dori.uni <= choco.uni))
+					cout << 25 - mayor[0] << " Doritos Dinamita";
+				  else if ((choco.uni <= chito.uni)and (choco.uni <= coca.uni) and (choco.uni <=dori.uni))
+					cout << 25 - mayor[0] << " Chocolatina Hershey's";
 				  break;
 				case 5:
 				  //Porcentaje de donaciones
 				  cout <<
 					"\nValor de la donacion total al FOPRE por las compras realizadas: "
-					<< choco.donacion +
-					chito.donacion << " pesos" << endl;
+					<< choco.donacion + chito.donacion << " pesos" << endl;
 				  break;
 				case 6:
 				  //Conocer el valor de la donacion al FOPRE por tipo de producto.
@@ -329,17 +339,16 @@ main ()
 				  cout << "\nChocolatina Hershey's: " << 25 - choco.uni;
 				  break;
 				default:
-				  dev_menu = 10;
+				  dev_menu.op = 10;
 				  break;
 				}
 			}
-		  while (dev_menu != 10);
+		  while (dev_menu.op != 10);
 		  break;
 		default:
-		  opmenu = 5;
+		  menu_prin.op = 5;
 		  break;
 		}
 	}
-  while (opmenu != 5);
+  while (menu_prin.op != 5);
 }
-
