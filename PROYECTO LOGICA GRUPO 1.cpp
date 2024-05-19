@@ -14,6 +14,8 @@ struct menu
 int
 main ()
 {
+  FOPRE sobrante;
+  sobrante.donacion;
   FOPRE coca;
   coca.uni = 25;
   coca.precio = 3700;
@@ -34,6 +36,8 @@ main ()
   menu_compra.op;
   menu dev_menu;
   dev_menu.op;
+  menu restante;
+  restante.op;
   int unidades_totales, total_productos, productos_disp, aux;
   float credito, total, precio_total;
   total_productos = coca.uni + chito.uni + choco.uni + choco.uni;
@@ -51,7 +55,7 @@ main ()
 		chito.precio << "                  " << choco.precio << "\n\n";
 	  cout << "\nDinero: " << total << " pesos" << endl;
 	  cout <<
-		"\n1. Visualizar la informacion de los productos.\n2. Agregar dinero a la maquina.\n3. Comprar un producto.\n4. Opciones de desarrollador. \n5. Salir"
+		"\n1. Visualizar la informacion de los productos.\n2. Agregar dinero a la maquina.\n3. Comprar un producto.\n4. Opciones de desarrollador. \n5. Retirar saldo sobrante"
 		<< endl << endl;
 	  cin >> menu_prin.op;
 	  switch (menu_prin.op)		//visualizacion de la informacion de los productos
@@ -159,6 +163,7 @@ main ()
 				<< chito.precio << "                  " << choco.precio <<
 				"\n\n";
 			}
+			
 		  while (menu_info.op == 1000);
 		  do
 			{					//resta del saldo y resta de la cantidad
@@ -266,6 +271,22 @@ main ()
 			}
 		  while (menu_compra.op != 5);
 		  break;
+		 case 5://opcion para robar money
+		cout<<"\nDesea retirar su saldo?\n(si su saldo no es modulo de 10000 pesos la maquina los añadira al FOPRE)";
+		cout<<endl;
+		cout<<"(Escriba 1 para continuar/ Escriba 0 para devolverse :3)\n";
+        cin>>restante.op;
+        
+        if(((((int)total%10000)!=0) and (total>=10000)and(restante.op==1)))
+		{
+		sobrante.donacion=total;
+		total=0;
+		break;
+		}
+		else
+		{
+		 break;
+		}
 		case 4:
 		  cout <<
 			"\nOpciones de desarrollador (Ingrese 0 para devolverse al menu anterior)";
@@ -322,7 +343,7 @@ main ()
 				  //Porcentaje de donaciones
 				  cout <<
 					"\nValor de la donacion total al FOPRE por las compras realizadas: "
-					<< choco.donacion + chito.donacion << " pesos" << endl;
+					<< choco.donacion + chito.donacion + sobrante.donacion << " pesos" << endl;
 				  break;
 				case 6:
 				  //Conocer el valor de la donacion al FOPRE por tipo de producto.
@@ -346,9 +367,10 @@ main ()
 		  while (dev_menu.op != 10);
 		  break;
 		default:
-		  menu_prin.op = 5;
+		  menu_prin.op = 6;
 		  break;
 		}
 	}
-  while (menu_prin.op != 5);
+  while (menu_prin.op != 6);
 }
+
